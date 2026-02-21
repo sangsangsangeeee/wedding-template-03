@@ -1,0 +1,7 @@
+{
+  "name": "Our Storybook Wedding",
+  "description": "수채화 테마의 동화책 컨셉 인터랙티브 모바일 청첩장",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

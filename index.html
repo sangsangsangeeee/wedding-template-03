@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Storybook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              paper: '#FDFCF8', // 조금 더 따뜻한 미색
+              ink: '#4A3B32',   // 깊은 세피아 브라운
+              peach: '#F2E6D8', // 노을빛 웜 베이지 (기존 피치 대체)
+              mint: '#8FA3AD',  // 차분한 블루 그레이 (기존 민트 대체 - 하늘/그림자 색)
+              accent: '#C85C42', // 붉은 단풍색 (메인 포인트)
+              gold: '#D9A54C',   // 은행나무 골드
+            },
+            fontFamily: {
+              hand: ['"Nanum Pen Script"', 'cursive'],
+              body: ['"Gowun Dodum"', 'sans-serif'],
+            },
+            backgroundImage: {
+              'watercolor-texture': "url('https://www.transparenttextures.com/patterns/watercolor.png')",
+            }
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom scrollbar to match theme */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FDFCF8;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #8FA3AD;
+        border-radius: 4px;
+      }
+      body {
+        background-color: #FDFCF8;
+        color: #4A3B32;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "framer-motion": "https://esm.sh/framer-motion@^12.34.2",
+    "lucide-react": "https://esm.sh/lucide-react@^0.574.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+import { GalleryImage } from './types';
+
+export const WEDDING_DATE = new Date('2026-06-07T15:00:00');
+export const GROOM_NAME = "상이";
+export const BRIDE_NAME = "현아";
+export const WEDDING_LOCATION = "서울";
+export const LOCATION_NAME = "그랜드 포레스트 가든";
+export const LOCATION_ADDRESS = "서울시 강남구 스토리북로 123";
+
+export const INVITATION_TITLE = "초대합니다";
+
+
+
+
+export const INVITATION_PARAGRAPHS = [
+  "햇살이 가장 예쁜 6월에\n저희가 사랑의 결실을 \n맺게 되었습니다.",
+  "늘 웃음 가득한 부부가 \n되겠습니다.",
+  "평생을 함께 써 내려갈\n저희의 첫 페이지에\n소중한 분들을 초대합니다.",
+];
+
+export const GALLERY_IMAGES: GalleryImage[] = [
+  { id: 1, url: "/assets/gallery-1.jpeg", caption: "케이크와 함께", rotation: -3 },
+  { id: 2, url: "/assets/gallery-2.jpeg", caption: "달콤한 시간", rotation: 4 },
+  { id: 3, url: "/assets/gallery-4.jpeg", caption: "계단에서", rotation: -2 },
+  { id: 4, url: "/assets/gallery-6.jpeg", caption: "유리 낙서", rotation: 2 },
+  { id: 5, url: "/assets/gallery-8.jpeg", caption: "꽃다발", rotation: -1 },
+  { id: 6, url: "/assets/gallery-9.jpeg", caption: "블랙 커플룩", rotation: 3 },
+  { id: 7, url: "/assets/gallery-13.jpeg", caption: "프러포즈", rotation: -4 },
+  { id: 8, url: "/assets/gallery-14.jpeg", caption: "Will You Marry Me", rotation: 1 },
+  { id: 9, url: "/assets/gallery-15.jpeg", caption: "마주보며", rotation: -2 },
+  { id: 10, url: "/assets/gallery-16.jpeg", caption: "꽃 건네기", rotation: 2 },
+];
+
+// Mock calendar data for June 2026
+// June 1st, 2026 is a Monday.
+// Grid starts at Sunday (index 0).
+// So index 1 is Monday (1st). day = index.
+export const CALENDAR_DAYS = Array.from({ length: 35 }, (_, i) => {
+    const day = i; 
+    return day > 0 && day <= 30 ? day : null;
+});
