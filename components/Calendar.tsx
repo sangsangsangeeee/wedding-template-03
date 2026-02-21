@@ -1,5 +1,5 @@
 import React from 'react';
-import { CALENDAR_DAYS } from '../constants';
+import { CALENDAR_DAYS, WEDDING_INFO } from '../constants';
 import { motion } from 'framer-motion';
 
 const Calendar: React.FC = () => {
@@ -60,7 +60,10 @@ const Calendar: React.FC = () => {
       {/* Additional Doodles */}
       <div className="mt-8 font-hand text-2xl text-ink/80 text-center">
         <p>소중한 날, 초대합니다</p>
-        <p className="text-sm font-body mt-2 text-ink/60">일요일 오후 3시</p>
+        <p className="text-sm font-body mt-2 text-ink/60 whitespace-pre-line">
+          {`${['일', '월', '화', '수', '목', '금', '토'][WEDDING_INFO.date.getDay()]}요일 오후 ${WEDDING_INFO.date.getHours() - 12}시`}
+          {'\n'}{WEDDING_INFO.venue}
+        </p>
       </div>
     </div>
   );

@@ -1,20 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Copy, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LOCATION_NAME, LOCATION_ADDRESS } from '../constants';
+import { WEDDING_INFO, TRANSPORT_INFO } from '../constants';
+
+declare global {
+  interface Window {
+    naver: any;
+  }
+}
 
 const MapSection: React.FC = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [showToast, setShowToast] = useState(false);
+  const mapElement = useRef<HTMLDivElement | null>(null);
 
-  const transportInfo = [
-    { title: '지하철', content: '2호선 숲속역 3번 출구 도보 5분' },
-    { title: '버스', content: '초록버스 1234번, 가든 입구 하차' },
-    { title: '자가용', content: '네비게이션에 "그랜드 포레스트 가든" 검색 (주차 200대 가능)' },
-  ];
+  useEffect(() => {
+    if (!mapElement.current || !window.naver || !window.naver.maps) {
+      console.warn('Naver maps SDK is not loaded. Skipping map initialization.');
+      return;
+    }
+
+    const { lat, lng } = WEDDING_INFO.mapCoordinates;
+    const location = new window.naver.maps.LatLng(lat, lng);
+
+    const mapOptions = {
+      center: location,
+      zoom: 16,
+      minZoom: 14,
+      maxZoom: 19,
+      zoomControl: true,
+      zoomControlOptions: {
+        position: window.naver.maps.Position.TOP_RIGHT,
+      },
+    };
+
+    const map = new window.naver.maps.Map(mapElement.current, mapOptions);
+
+    new window.naver.maps.Marker({
+      position: location,
+      map: map,
+    });
+  }, []);
+
+  const transportInfo = TRANSPORT_INFO;
 
   const handleCopyAddress = () => {
-    navigator.clipboard.writeText(LOCATION_ADDRESS);
+    navigator.clipboard.writeText(WEDDING_INFO.address);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 2000);
   };
@@ -38,28 +69,13 @@ const MapSection: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <div className="bg-white p-2 shadow-lg rotate-[-1deg] w-full relative mb-6">
-        {/* Paper texture overlay */}
-        <div className="absolute inset-0 bg-yellow-50/20 pointer-events-none z-10 mix-blend-multiply"></div>
-        
-        <div className="relative aspect-video w-full overflow-hidden bg-[#E8F4F8] flex items-center justify-center border-2 border-gray-100">
-             <iframe 
-                width="100%" 
-                height="100%" 
-                frameBorder="0" 
-                scrolling="no" 
-                marginHeight={0} 
-                marginWidth={0} 
-                src={`https://maps.google.com/maps?q=${encodeURIComponent(LOCATION_ADDRESS)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-                title="Map"
-                className="w-full h-full opacity-90 grayscale-[0.1]"
-            ></iframe>
-        </div>
+      <div className="w-full aspect-square bg-gray-100 mb-6 shadow-inner rounded-sm overflow-hidden border border-gray-100 relative">
+        <div ref={mapElement} className="w-full h-full" />
       </div>
 
       <div className="text-center mb-8 w-full px-4">
-        <h3 className="text-xl font-bold font-body text-ink mb-1">{LOCATION_NAME}</h3>
-        <p className="text-sm text-ink/70 mb-4">{LOCATION_ADDRESS}</p>
+        <h3 className="text-xl font-bold font-body text-ink mb-1 whitespace-pre-line">{WEDDING_INFO.venue}</h3>
+        <p className="text-sm text-ink/70 mb-4">{WEDDING_INFO.address}</p>
         
         <button 
           onClick={handleCopyAddress}

@@ -5,7 +5,7 @@ import WatercolorBlob from './components/WatercolorBlob';
 import Calendar from './components/Calendar';
 import MapSection from './components/MapSection';
 import ImageModal from './components/ImageModal';
-import { BRIDE_NAME, GROOM_NAME, GALLERY_IMAGES, WEDDING_DATE, WEDDING_LOCATION, INVITATION_TITLE, INVITATION_PARAGRAPHS } from './constants';
+import { WEDDING_INFO, GALLERY_IMAGES, INVITATION_TITLE, INVITATION_PARAGRAPHS } from './constants';
 import { Heart, Music, Image as ImageIcon, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -64,11 +64,11 @@ const App: React.FC = () => {
 
           <h1 className="font-hand text-6xl mb-4 text-ink drop-shadow-sm">우리의 동화</h1>
           <div className="flex items-center justify-center gap-4 text-xl font-bold tracking-widest uppercase text-ink/80">
-            <span>{GROOM_NAME}</span>
+            <span>{WEDDING_INFO.groom}</span>
             <Heart size={16} className="text-accent fill-accent animate-bounce" />
-            <span>{BRIDE_NAME}</span>
+            <span>{WEDDING_INFO.bride}</span>
           </div>
-          <p className="mt-4 text-ink/70 text-sm tracking-wide">{`${WEDDING_DATE.getFullYear()}년 ${WEDDING_DATE.getMonth() + 1}월 ${WEDDING_DATE.getDate()}일`} • {WEDDING_LOCATION}</p>
+          <p className="mt-4 text-ink/70 text-sm tracking-wide">{`${WEDDING_INFO.date.getFullYear()}년 ${WEDDING_INFO.date.getMonth() + 1}월 ${WEDDING_INFO.date.getDate()}일`} • {WEDDING_INFO.location}</p>
         </motion.div>
         
         <div className="absolute bottom-10 animate-bounce text-ink/40 hidden md:block">
@@ -103,7 +103,7 @@ const App: React.FC = () => {
              
              <div className="pt-8 flex justify-end items-end gap-2">
                <div className="font-hand text-2xl text-ink/60 transform -rotate-6">드림</div>
-               <div className="font-hand text-3xl">{GROOM_NAME} & {BRIDE_NAME}</div>
+               <div className="font-hand text-3xl">{WEDDING_INFO.groom} & {WEDDING_INFO.bride}</div>
                {/* Stamp */}
                <div className="w-12 h-12 border-2 border-accent rounded-full flex items-center justify-center text-accent font-bold text-xs transform rotate-12 opacity-80" style={{borderStyle: 'dashed'}}>
                  LOVE
@@ -227,7 +227,7 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="bg-paper p-10 text-center font-hand text-xl text-ink/50">
         <p>저희의 시작을 함께해주셔서 감사합니다.</p>
-        <p className="text-sm font-body mt-2">© 2026 {GROOM_NAME} & {BRIDE_NAME}</p>
+        <p className="text-sm font-body mt-2">© 2026 {WEDDING_INFO.groom} & {WEDDING_INFO.bride}</p>
       </footer>
 
       {/* Modal Overlay */}

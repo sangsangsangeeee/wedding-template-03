@@ -1,16 +1,22 @@
 import { GalleryImage } from './types';
 
-export const WEDDING_DATE = new Date('2026-06-07T15:00:00');
-export const GROOM_NAME = "상이";
-export const BRIDE_NAME = "현아";
-export const WEDDING_LOCATION = "서울";
-export const LOCATION_NAME = "그랜드 포레스트 가든";
-export const LOCATION_ADDRESS = "서울시 강남구 스토리북로 123";
+export const WEDDING_INFO = {
+  date: new Date('2026-06-07T15:00:00'),
+  groom: "상이",
+  bride: "현아",
+  location: "서울",
+  venue: "서울여성플라자 피움 서울, \n국제회의장",
+  address: "서울 동작구 여의대방로54길 18 (대방동)",
+  mapCoordinates: { lat: 37.51137187820746, lng: 126.92713661961623 },
+};
+
+export const TRANSPORT_INFO = [
+  { title: '지하철', content: '2호선 숲속역 3번 출구 도보 5분' },
+  { title: '버스', content: '초록버스 1234번, 가든 입구 하차' },
+  { title: '자가용', content: '네비게이션에 "그랜드 포레스트 가든" 검색 (주차 200대 가능)' },
+];
 
 export const INVITATION_TITLE = "초대합니다";
-
-
-
 
 export const INVITATION_PARAGRAPHS = [
   "햇살이 가장 예쁜 6월에\n저희가 사랑의 결실을 \n맺게 되었습니다.",
